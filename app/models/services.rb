@@ -12,7 +12,7 @@ DB.prepare("sort_by_distance",
   <<-SQL
 
   SELECT
-name,
+name, phone_number,
 (
    3959 *
    acos(cos(radians($1)) *
