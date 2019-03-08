@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   get '/services', to: 'services#index'
-  get '/services', to: 'services#show'
+  put '/servicesbydistance', to: 'services#servicesbydistance'
 end

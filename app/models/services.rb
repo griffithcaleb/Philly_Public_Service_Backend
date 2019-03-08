@@ -7,9 +7,41 @@ class Services
         DB = PG.connect(host: "localhost", port: 5432, dbname: 'PPS_backend_development')
     end
 
+# 1 is lat 2 is long
+DB.prepare("sort_by_distance",
+  <<-SQL
+
+  SELECT
+name,
+(
+   3959 *
+   acos(cos(radians($1)) *
+   cos(radians(lat)) *
+   cos(radians(lng) -
+   radians($2)) +
+   sin(radians($1)) *
+   sin(radians(lat )))
+) AS distance
+FROM services
+ORDER BY distance LIMIT 20;
+
+SQL
+)
+
+
+
+
 def self.all
  results = DB.exec("SELECT * FROM services;")
- results
+ results.to_json
 end
 
+
+def self.sort_by_distance(lat,lng)
+
+result = DB.exec_prepared("sort_by_distance",[lat,lng])
+p result
+return result
+
+end
 end
