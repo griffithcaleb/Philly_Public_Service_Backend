@@ -23,7 +23,7 @@ name, phone_number,service_type,primary_information,physical_address,start_time,
    sin(radians(lat )))
 ) AS distance
 FROM services
-ORDER BY distance LIMIT 20;
+ORDER BY distance LIMIT 100;
 
 SQL
 )
