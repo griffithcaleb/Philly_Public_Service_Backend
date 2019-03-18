@@ -8,6 +8,7 @@ class Services
     end
 
 # 1 is lat 2 is long
+# credit to google for the geolocation formula 
 DB.prepare("sort_by_distance",
   <<-SQL
 
